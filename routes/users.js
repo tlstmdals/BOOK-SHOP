@@ -1,12 +1,19 @@
 const express = require('express');
 const router = express.Router();
+const conn = require('../mariadb');
+const {
+    join,
+    login,
+    passwordResetRequest,
+    passwordReset
+ } = require('../controller/UserController');
+
+const { Result } = require('express-validator');
 router.use(express.json());
 
-router.post('/join',(req,res)=>{
-    
-});
-router.post('/login');
-router.post('/reset');
-router.put('/reset');
+router.post('/join', join);
+router.post('/login', login);
+router.post('/reset', passwordResetRequest);
+router.put('/reset', passwordReset);
 
 module.exports = router;
